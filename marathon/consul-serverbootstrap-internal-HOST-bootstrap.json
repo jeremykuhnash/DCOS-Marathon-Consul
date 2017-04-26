@@ -1,0 +1,77 @@
+{
+   "volumes": null,
+   "id": "/consul-dcos-leader",
+   "cmd": null,
+   "args": [
+     "server"
+   ],
+   "user": null,
+   "env": {
+     "DATACENTER": "ES-DCOS",
+     "CONSUL_DATA": "/mnt/mesos/sandbox/consuldata",
+     "BOOTSTRAP_EXPECT":"2"
+   },
+   "instances": 1,
+   "cpus": 0.5,
+   "mem": 256,
+   "disk": 0,
+   "gpus": 0,
+   "executor": null,
+   "constraints": null,
+   "fetch": null,
+   "storeUrls": null,
+   "backoffSeconds": 10,
+   "backoffFactor": 1.15,
+   "maxLaunchDelaySeconds": 3600,
+   "container": {
+     "volumes": [
+       {
+         "containerPath": "consuldata",
+         "mode": "RW",
+         "persistent": {
+           "size": 250
+         }
+       }
+     ],
+     "docker": {
+       "image": "jeremykuhnash/consul:7.4",
+       "forcePullImage": true,
+       "privileged": false,
+       "network": "HOST",
+       "portMappings": null
+     }
+   },
+   "healthChecks": [
+        {
+          "protocol": "HTTP",
+          "path": "/v1/health/service/consul",
+          "gracePeriodSeconds": 120,
+          "intervalSeconds": 2,
+          "timeoutSeconds": 10,
+          "maxConsecutiveFailures": 10,
+          "port": 8500,
+          "ignoreHttp1xx": false
+        }
+      ],
+   "readinessChecks": null,
+   "dependencies": null,
+   "upgradeStrategy": {
+     "minimumHealthCapacity": 0,
+     "maximumOverCapacity": 0
+   },
+   "labels": {
+     "HAPROXY_GROUP": "external",
+     "HAPROXY_0_VHOST": "consul.example.com",
+     "HAPROXY_0_ENABLED": "true"
+   },
+   "residency": null,
+   "secrets": null,
+   "taskKillGracePeriodSeconds": null,
+   "portDefinitions": [
+      {"port": 8500},
+      {"port": 8300},
+      {"port": 8301},
+      {"port": 8400}
+   ],
+   "requirePorts": true
+ }
