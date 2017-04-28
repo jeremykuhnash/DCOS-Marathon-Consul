@@ -4,7 +4,7 @@ Marathon Friendly Version of Consul
 ## Get Started FAST -- Docker Hub approach
 Pull the docker image from Docker hub as:
 ```
-$ docker pull johndohoney/consul:7.4
+$ docker pull jeremykuhnash/consul:7.4
 ```
 By default, this will pull the latest image.
 
@@ -16,18 +16,18 @@ The image supports the following environment variables:
 * `DATACENTER`: name of the consul datacenter (default: `consul-dc`) (equivalent of `-dc` CLI flag)
 * `LOG_LEVEL`: level of log verbosity (default: `INFO`) (equivalent of `-log-level` CLI flag)
 * `NETWORK_INTERFACE`: network interface to bind to (default: `eth0`) (this is used by `BIND_ADDR`)
-* `BIND_ADDR`: network interface to bind to (default: `0.0.0.0`) (equivalent of `-bind` CLI flag) (this overrides `NETWORK_INTERFACE`)
+* ~~`BIND_ADDR`: network interface to bind to (default: `0.0.0.0`) (equivalent of `-bind` CLI flag) (this overrides `NETWORK_INTERFACE`)~~
 * `BOOTSTRAP_EXPECT`: number of nodes to declare healthy quorum (default: `1`) (equivalent of `-bootstrap-expect` CLI flag)
 
 The run command looks like:
 ```
-$ docker run -d -P johndohoney/consul:7.4 MODE JOIN_ADDR
+$ docker run -d -P jeremykuhnash/consul:7.4 MODE
 ```
 
 The two positional arguments are:
 * `MODE`: mode of the `Consul` node, can take values `server` or `agent`
-* `JOIN_ADDR`: a valid FQDN or IP address of a peer node whose cluster to join,
-when starting the first node, this argument can be skipped.
+* ~~`JOIN_ADDR`: a valid FQDN or IP address of a peer node whose cluster to join,
+when starting the first node, this argument can be skipped.~~
 
 ## Roll Your own Approach
 
